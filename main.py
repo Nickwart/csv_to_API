@@ -1,3 +1,4 @@
+import os
 import csv
 import json
 import requests
@@ -86,6 +87,6 @@ class CSVParseToAPI:
                 )
 
 
-test = CSVParseToAPI('Ups-sample.csv', 4472, 'uuid')
+test = CSVParseToAPI('Ups-sample.csv', 4472, os.getenv('XOperation'))
 required_list = test.read_and_sort_csv()
 test.post_or_update(required_list)
