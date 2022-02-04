@@ -5,7 +5,7 @@ import requests
 
 
 class CSVParseToAPI:
-    def __init__(self, path, farm_id, xoperation):
+    def __init__(self, path, farm_id, xoperation=os.environ.get('XOperation')):
         self.path = path
         self.farm_id = farm_id
         self.xoperation = xoperation
@@ -65,7 +65,6 @@ class CSVParseToAPI:
 
             json_response = is_existing_field.json()
             print(json_response)
-            print('А ти не забув ввести Х-operation?')
 
             if json_response != {}:
                 requests.put(
@@ -87,6 +86,7 @@ class CSVParseToAPI:
                 )
 
 
-test = CSVParseToAPI('Ups-sample.csv', 4472, os.getenv('XOperation'))
+test = CSVParseToAPI('Ups-sample.csv', 4472)
 required_list = test.read_and_sort_csv()
 test.post_or_update(required_list)
+
